@@ -1,12 +1,9 @@
 package com.test.ApiMake.repository;
 
-import com.test.ApiMake.models.Region;
+import com.test.ApiMake.models.Pays;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface regionRepository extends JpaRepository<Region, Long> {
-
+public interface PaysRepository extends JpaRepository<Pays, Long> {
 }

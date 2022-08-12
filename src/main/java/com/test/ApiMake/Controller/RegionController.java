@@ -2,25 +2,58 @@ package com.test.ApiMake.Controller;
 
 import com.test.ApiMake.models.Region;
 import com.test.ApiMake.repository.regionRepository;
+import com.test.ApiMake.services.RegionService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/region")
+@AllArgsConstructor
 public class RegionController {
 
-    @Autowired
-    private regionRepository regionRepository;
+    private final RegionService regionService;
+
+
+    //private regionRepository regionRepository;
 
     @GetMapping(value = "/")
     public String getPage(){
         return "hello world";
     }
 
+    @PostMapping("/create")
+    public Region create(@RequestBody Region region){
+        return regionService.creer(region);
+    }
+    @GetMapping("/read")
+    public List<Region> read(){
+        return regionService.lire();
+    }
+
+    @PutMapping("/update{id_Region}")
+    public Region update(@PathVariable Long id_region, @RequestBody Region region){
+        return regionService.modifier(id_region, region);
+    }
+
+    @DeleteMapping("/delete/{id_Region}")
+    public String delete(@PathVariable Long id_Region){
+        return regionService.supprimer(id_Region);
+    }
+    /*
+    @RequestMapping("/")
+    public String getPage(Model model){
+        List<Region> listRegion = service.listAll();
+        model.addAttribute("listRegion",listRegion);
+        return "index";
+    }
+*/
+
+/*
     @GetMapping(value = "/region")
     public List<Region> getRegion(){
         return regionRepository.findAll();
@@ -31,5 +64,28 @@ public class RegionController {
         regionRepository.save(region);
         return "saved...";
     }
+
+    @PutMapping(value = "/update/{id_Region}")
+    public String updateRegion(@PathVariable Long id_Region,  @RequestBody Region region){
+        return regionRepository.findById(id_Region)
+                        .map(regions1->{
+                            regions1.setCode_Region(region.getCode_Region());
+                            regions1.setNom_Regiojn(region.getNom_Regiojn());
+                            regions1.setDomaineActiviteRegion(region.getDomaineActiviteRegion());
+                            regions1.setSuperficie(region.getSuperficie());
+                            regions1.setLangueMajoritaire(region.getLangueMajoritaire());
+                            regionRepository.save(regions1);
+                            return "Updated...";
+                        }).orElseThrow(()-> new RuntimeException("Regions non trouvé"));
+
+    }
+
+    @DeleteMapping(value = "/delete/{id_Region}")
+    public String deleteRegion(@PathVariable Long id_Region){
+        Region deleteRegion = regionRepository.findById(id_Region).get();
+        regionRepository.delete(deleteRegion);
+        return "Delete region with the id: "+id_Region;
+    }
+*/
 
 }
