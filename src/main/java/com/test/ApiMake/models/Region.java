@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Table(name = "region")
 @NoArgsConstructor
 public class Region {
 
@@ -21,4 +22,12 @@ public class Region {
     private String domaineActiviteRegion;
     private String superficie;
     private String langueMajoritaire;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pays")
+    private Pays pays;
+    @ManyToOne
+    @JoinColumn(name = "id_population")
+    private Population polulation;
+
 }

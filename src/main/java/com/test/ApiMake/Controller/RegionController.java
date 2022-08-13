@@ -3,6 +3,8 @@ package com.test.ApiMake.Controller;
 import com.test.ApiMake.models.Region;
 import com.test.ApiMake.repository.regionRepository;
 import com.test.ApiMake.services.RegionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/region")
 @AllArgsConstructor
+@Api(value = "hello", description = "Sample hello world application")
 public class RegionController {
 
     private final RegionService regionService;
@@ -21,25 +24,26 @@ public class RegionController {
 
     //private regionRepository regionRepository;
 
-    @GetMapping(value = "/")
-    public String getPage(){
-        return "hello world";
-    }
 
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
     public Region create(@RequestBody Region region){
         return regionService.creer(region);
     }
+
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/read")
     public List<Region> read(){
         return regionService.lire();
     }
 
-    @PutMapping("/update{id_Region}")
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
+    @PutMapping("/update/{id_Region}")
     public Region update(@PathVariable Long id_region, @RequestBody Region region){
         return regionService.modifier(id_region, region);
     }
 
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
     @DeleteMapping("/delete/{id_Region}")
     public String delete(@PathVariable Long id_Region){
         return regionService.supprimer(id_Region);
