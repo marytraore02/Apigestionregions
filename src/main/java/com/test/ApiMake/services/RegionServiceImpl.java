@@ -4,7 +4,6 @@ import com.test.ApiMake.models.Region;
 import com.test.ApiMake.repository.regionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-//import com.test.ApiMake.repository.regionRepository;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class RegionServiceImpl implements RegionService{
     @Override
     public Region creer(Region region) {
         return regionRepository.save(region);
+        //return "add-student";
     }
 
     @Override
@@ -37,11 +37,13 @@ public class RegionServiceImpl implements RegionService{
                     }).orElseThrow(()-> new RuntimeException("Region non trouvé !"));
         }
 
-
     @Override
     public String supprimer(long id_Region) {
         regionRepository.deleteById(id_Region);
         return "Region supprimé";
     }
 
+    public Iterable<Object[]> getRegionsSP() {
+        return regionRepository.getRegionsSP();
+    }
 }

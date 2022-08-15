@@ -1,14 +1,13 @@
 package com.test.ApiMake.Controller;
 
+//import javax.validation.Valid;
+
 import com.test.ApiMake.models.Region;
-import com.test.ApiMake.repository.regionRepository;
 import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +18,11 @@ import java.util.List;
 @Api(value = "hello", description = "Sample hello world application")
 public class RegionController {
 
+    @Autowired
     private final RegionService regionService;
 
 
     //private regionRepository regionRepository;
-
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
@@ -31,6 +30,34 @@ public class RegionController {
         return regionService.creer(region);
     }
 
+/*
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
+    @GetMapping("/create")
+    public String create(Region region){
+        //return regionService.creer(region);
+        return "add-student";
+    }
+
+
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
+    @GetMapping("list")
+    public String region(Model model) {
+        model.addAttribute("region", this.regionRepository.findAll());
+        return "index";
+    }
+
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
+    @PostMapping("/add")
+    public String addRegion(@Valid Region region, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "add-student";
+        }
+
+        this.regionRepository.save(region);
+        return "redirect:list";
+
+    }
+*/
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/read")
     public List<Region> read(){
@@ -48,6 +75,14 @@ public class RegionController {
     public String delete(@PathVariable Long id_Region){
         return regionService.supprimer(id_Region);
     }
+
+    @ApiOperation(value = "Just to test the sample test api of My App Service")
+    @GetMapping("/lireSP")
+    public Iterable<Object[]> getRegionsSP(){
+        return regionService.getRegionsSP();
+    }
+
+
     /*
     @RequestMapping("/")
     public String getPage(Model model){

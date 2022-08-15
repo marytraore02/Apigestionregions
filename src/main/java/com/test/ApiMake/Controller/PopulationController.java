@@ -22,8 +22,6 @@ public class PopulationController {
 
 
     //private regionRepository regionRepository;
-
-
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
     public Population create(@RequestBody Population population){
