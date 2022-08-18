@@ -58,7 +58,7 @@ public class RegionController {
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
-    public Region create(@RequestBody Region region, Population population){
+    public Region create(@RequestBody Region region){
         return regionService.creer(region);
     }
 
