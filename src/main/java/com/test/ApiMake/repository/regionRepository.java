@@ -3,13 +3,13 @@ import com.test.ApiMake.models.Region;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import java.util.List;
+//import java.util.List;
 
 @Repository
 public interface regionRepository extends JpaRepository<Region, Long> {
     //List<Region> findByName(String name);
-/*
-    @Query(value = "SELECT id_region,code_region,nom_regiojn,domaine_activite_region,superficie,langue_majoritaire FROM region,population WHERE population.id=region.id_population", nativeQuery = true)
+
+    @Query(value = "SELECT id_region,code_region,nom_regiojn,domaine_activite_region,superficie,langue_majoritaire FROM region", nativeQuery = true)
     Iterable<Object[]> getRegionsSP ();
-*/
+
 }

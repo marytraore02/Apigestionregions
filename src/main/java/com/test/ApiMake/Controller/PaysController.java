@@ -2,7 +2,7 @@ package com.test.ApiMake.Controller;
 
 
 import com.test.ApiMake.models.Pays;
-import com.test.ApiMake.models.Region;
+//import com.test.ApiMake.models.Region;
 import com.test.ApiMake.services.PaysService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,9 +1,9 @@
 package com.test.ApiMake.Controller;
 
 import com.test.ApiMake.models.Population;
-import com.test.ApiMake.models.Region;
+//import com.test.ApiMake.models.Region;
 import com.test.ApiMake.services.PopulationService;
-import com.test.ApiMake.services.RegionService;
+//import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

@@ -11,6 +11,6 @@ public interface RegionService {
     List<Region> lire();
     Region modifier(Long id_Region, Region region);
     String supprimer(long id_Region);
-    //Iterable<Object[]> getRegionsSP();
+    Iterable<Object[]> getRegionsSP();
 
 }

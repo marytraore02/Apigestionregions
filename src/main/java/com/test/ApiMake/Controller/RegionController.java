@@ -2,11 +2,11 @@ package com.test.ApiMake.Controller;
 
 //import javax.validation.Valid;
 
-import com.test.ApiMake.models.Pays;
-import com.test.ApiMake.models.Population;
+//import com.test.ApiMake.models.Pays;
+//import com.test.ApiMake.models.Population;
 import com.test.ApiMake.models.Region;
-import com.test.ApiMake.services.PaysService;
-import com.test.ApiMake.services.PopulationService;
+//import com.test.ApiMake.services.PaysService;
+//import com.test.ApiMake.services.PopulationService;
 import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,11 +25,11 @@ public class RegionController {
     @Autowired
     private final RegionService regionService;
 
-    @Autowired
-    PaysService paysServices;
+  /*  @Autowired
+    PaysService paysServices; */
 
-    @Autowired
-    PopulationService populationService;
+   /* @Autowired
+    PopulationService populationService; */
 
 /*
     @ApiOperation(value = "Just to test the sample test api of My App Service")
@@ -81,13 +81,13 @@ public class RegionController {
         return regionService.supprimer(id_Region);
     }
 
-    /*
+
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/lireSP")
     public Iterable<Object[]> getRegionsSP(){
         return regionService.getRegionsSP();
     }
-*/
+
 
     /*
     @RequestMapping("/")
