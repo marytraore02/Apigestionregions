@@ -18,13 +18,13 @@ public class PaysServiceImpl implements PaysService {
     public Pays creer(Pays pays) {
         return PaysRepository.save(pays);
     }
-/*
+
     @Override
-    public Pays getNomPays(Pays pays) {
-        return PaysRepository.findByNompays(pays.getNomPays());
+    public Pays getNomPays(String nom) {
+        return PaysRepository.findByNomPays(nom);
     }
 
- */
+
     @Override
     public List<Pays> lire() {
         return PaysRepository.findAll();

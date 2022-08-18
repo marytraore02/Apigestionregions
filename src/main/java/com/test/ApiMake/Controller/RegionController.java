@@ -2,10 +2,10 @@ package com.test.ApiMake.Controller;
 
 //import javax.validation.Valid;
 
-//import com.test.ApiMake.models.Pays;
+import com.test.ApiMake.models.Pays;
 //import com.test.ApiMake.models.Population;
 import com.test.ApiMake.models.Region;
-//import com.test.ApiMake.services.PaysService;
+import com.test.ApiMake.services.PaysService;
 //import com.test.ApiMake.services.PopulationService;
 import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
@@ -25,8 +25,10 @@ public class RegionController {
     @Autowired
     private final RegionService regionService;
 
-  /*  @Autowired
-    PaysService paysServices; */
+
+
+    @Autowired
+    PaysService paysServices;
 
    /* @Autowired
     PopulationService populationService; */
@@ -59,7 +61,17 @@ public class RegionController {
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
     public Region create(@RequestBody Region region){
+
+
+        // verification de l'existance du pays, de la langue et du domaine
+        Pays pays = paysServices.getNomPays(region.getPays().getNomPays());
+        // s'il l'une d'entre elles n'existe pas la créer
+        if (pays == null) {
+            paysServices.creer(region.getPays());
+        }
+        // après créer la region
         return regionService.creer(region);
+
     }
 
 
