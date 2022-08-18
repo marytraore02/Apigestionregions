@@ -7,10 +7,10 @@ import java.util.List;
 
 @Service
 public interface RegionService {
-
-    Region creer (Region region);
+    Region creer(Region region);
     List<Region> lire();
     Region modifier(Long id_Region, Region region);
     String supprimer(long id_Region);
-    Iterable<Object[]> getRegionsSP();
+    //Iterable<Object[]> getRegionsSP();
+
 }

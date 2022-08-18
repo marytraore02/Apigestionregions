@@ -1,8 +1,6 @@
 package com.test.ApiMake.services;
 
-import com.test.ApiMake.models.Pays;
 import com.test.ApiMake.models.Population;
-import com.test.ApiMake.repository.PaysRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.test.ApiMake.repository.PopulationRepository;

@@ -16,8 +16,10 @@ public class Population {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id_population;
-    @Column(length = 10)
-    private Long nb_population;
+    private String nb_population;
     @Column(length = 4)
     private Long annee_population;
+
+    @ManyToOne
+    private Region region;
 }

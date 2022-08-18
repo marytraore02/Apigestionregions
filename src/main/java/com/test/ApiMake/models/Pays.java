@@ -20,5 +20,6 @@ public class Pays {
     @Column(name="id")
     private Long id_pays;
     @Column(length = 50)
-    private String nom_pays;
+    private String nomPays;
+
 }

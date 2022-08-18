@@ -26,10 +26,6 @@ public class Region {
     private String langueMajoritaire;
 
     @ManyToOne
-    @JoinColumn(name = "id_pays")
     private Pays pays;
-    @ManyToOne
-    @JoinColumn(name = "id_population")
-    private Population polulation;
 
 }

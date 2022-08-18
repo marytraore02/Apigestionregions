@@ -2,7 +2,11 @@ package com.test.ApiMake.Controller;
 
 //import javax.validation.Valid;
 
+import com.test.ApiMake.models.Pays;
+import com.test.ApiMake.models.Population;
 import com.test.ApiMake.models.Region;
+import com.test.ApiMake.services.PaysService;
+import com.test.ApiMake.services.PopulationService;
 import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,22 +25,26 @@ public class RegionController {
     @Autowired
     private final RegionService regionService;
 
+    @Autowired
+    PaysService paysServices;
 
-    //private regionRepository regionRepository;
-
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/create")
-    public Region create(@RequestBody Region region){
-        return regionService.creer(region);
-    }
+    @Autowired
+    PopulationService populationService;
 
 /*
     @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("/create")
-    public String create(Region region){
-        //return regionService.creer(region);
-        return "add-student";
+    @PostMapping("/create")
+    public Region create(@RequestBody Region region, Population population){
+        Pays pays = paysServices.getNomPays(region.getPays());
+        if(pays==null || population==null){
+            paysServices.creer(region.getPays());
+            populationService.creer(population);
+        }
+
+       return regionService.creer(region);
     }
+*/
+/*
 
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
@@ -45,19 +53,16 @@ public class RegionController {
         model.addAttribute("region", this.regionRepository.findAll());
         return "index";
     }
+*/
+
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/add")
-    public String addRegion(@Valid Region region, BindingResult result, Model model) {
-        if(result.hasErrors()) {
-            return "add-student";
-        }
-
-        this.regionRepository.save(region);
-        return "redirect:list";
-
+    @PostMapping("/create")
+    public Region create(@RequestBody Region region, Population population){
+        return regionService.creer(region);
     }
-*/
+
+
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/read")
     public List<Region> read(){
@@ -76,12 +81,13 @@ public class RegionController {
         return regionService.supprimer(id_Region);
     }
 
+    /*
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/lireSP")
     public Iterable<Object[]> getRegionsSP(){
         return regionService.getRegionsSP();
     }
-
+*/
 
     /*
     @RequestMapping("/")

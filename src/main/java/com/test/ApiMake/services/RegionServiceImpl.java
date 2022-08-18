@@ -42,8 +42,9 @@ public class RegionServiceImpl implements RegionService{
         regionRepository.deleteById(id_Region);
         return "Region supprimé";
     }
-
+/*
     public Iterable<Object[]> getRegionsSP() {
         return regionRepository.getRegionsSP();
     }
+*/
 }

@@ -3,7 +3,6 @@ package com.test.ApiMake.services;
 
 import com.test.ApiMake.models.Pays;
 import com.test.ApiMake.repository.PaysRepository;
-import com.test.ApiMake.repository.regionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,13 @@ public class PaysServiceImpl implements PaysService {
     public Pays creer(Pays pays) {
         return PaysRepository.save(pays);
     }
+/*
+    @Override
+    public Pays getNomPays(Pays pays) {
+        return PaysRepository.findByNompays(pays.getNomPays());
+    }
 
+ */
     @Override
     public List<Pays> lire() {
         return PaysRepository.findAll();
@@ -29,7 +34,7 @@ public class PaysServiceImpl implements PaysService {
     public Pays modifier(Long id_pays, Pays pays) {
         return PaysRepository.findById(id_pays)
                 .map(p->{
-                    p.setNom_pays(pays.getNom_pays());
+                    p.setNomPays(pays.getNomPays());
                     return PaysRepository.save(p);
                 }).orElseThrow(()-> new RuntimeException("Pays non trouvé !"));
     }

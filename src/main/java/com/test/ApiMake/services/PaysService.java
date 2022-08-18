@@ -7,7 +7,10 @@ import java.util.List;
 public interface PaysService {
 
     Pays creer (Pays pays);
+   // Pays getNomPays(Pays pays);
+    //Pays getPays(Pays pays);
     List<Pays> lire();
     Pays modifier(Long id_pays, Pays pays);
     String supprimer(long id_pays);
+
 }
