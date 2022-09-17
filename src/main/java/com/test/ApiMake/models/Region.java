@@ -17,10 +17,9 @@ public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_Region")
-    private Long id_Region;
+    private Long idRegion;
     private String code_Region;
-    private String nom_Regiojn;
+    private String nom_Region;
     private String domaineActiviteRegion;
     private String superficie;
     private String langueMajoritaire;

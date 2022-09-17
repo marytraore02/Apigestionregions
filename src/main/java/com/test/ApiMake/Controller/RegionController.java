@@ -1,21 +1,20 @@
 package com.test.ApiMake.Controller;
 
-//import javax.validation.Valid;
 
-import com.test.ApiMake.models.Pays;
-//import com.test.ApiMake.models.Population;
 import com.test.ApiMake.models.Region;
 import com.test.ApiMake.services.PaysService;
-//import com.test.ApiMake.services.PopulationService;
 import com.test.ApiMake.services.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/region")
 @AllArgsConstructor
@@ -25,74 +24,50 @@ public class RegionController {
     @Autowired
     private final RegionService regionService;
 
-
-
     @Autowired
-    PaysService paysServices;
-
-   /* @Autowired
-    PopulationService populationService; */
-
-/*
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/create")
-    public Region create(@RequestBody Region region, Population population){
-        Pays pays = paysServices.getNomPays(region.getPays());
-        if(pays==null || population==null){
-            paysServices.creer(region.getPays());
-            populationService.creer(population);
-        }
-
-       return regionService.creer(region);
-    }
-*/
-/*
-
-
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("list")
-    public String region(Model model) {
-        model.addAttribute("region", this.regionRepository.findAll());
-        return "index";
-    }
-*/
-
+    private final PaysService paysServices;
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @PostMapping("/create")
-    public Region create(@RequestBody Region region){
-
-
+    public ResponseEntity<Region> create(@RequestBody Region region){
         // verification de l'existance du pays, de la langue et du domaine
-        Pays pays = paysServices.getNomPays(region.getPays().getNomPays());
+        /*Pays pays = paysServices.getNomPays(region.getPays().getNomPays());
         // s'il l'une d'entre elles n'existe pas la créer
         if (pays == null) {
             paysServices.creer(region.getPays());
-        }
+        }*/
         // après créer la region
-        return regionService.creer(region);
+        Region NewRegion = regionService.creer(region);
+        return new ResponseEntity<>(NewRegion, HttpStatus.CREATED);
 
     }
 
+    @GetMapping("/find/{idRegion}")
+    public ResponseEntity<Region>  getIdRegion (@PathVariable("idRegion") Long idRegion){
+        Region region = regionService.GetIdRegion(idRegion);
+        return new ResponseEntity<>(region, HttpStatus.OK);
+    }
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/read")
-    public List<Region> read(){
-        return regionService.lire();
+    public ResponseEntity<List<Region>> read(){
+        List<Region> regions = regionService.lire();
+        return new ResponseEntity<>(regions, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PutMapping("/update/{id_Region}")
-    public Region update(@PathVariable Long id_region, @RequestBody Region region){
-        return regionService.modifier(id_region, region);
+    @PutMapping("/update/{idRegion}")
+    public ResponseEntity<Region> update(@PathVariable Long idRegion, @RequestBody Region region){
+        Region UpdateRegion = regionService.modifier(idRegion,region);
+        return new ResponseEntity<>(UpdateRegion, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @DeleteMapping("/delete/{id_Region}")
-    public String delete(@PathVariable Long id_Region){
-        return regionService.supprimer(id_Region);
+    @DeleteMapping("/delete/{idRegion}")
+    public ResponseEntity<Region> supprimer(@PathVariable Long idRegion){
+        regionService.supprimer(idRegion);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @ApiOperation(value = "Just to test the sample test api of My App Service")
     @GetMapping("/lireSP")

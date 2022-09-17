@@ -3,9 +3,13 @@ package com.test.ApiMake.services;
 import com.test.ApiMake.models.Region;
 import com.test.ApiMake.repository.regionRepository;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,11 +29,11 @@ public class RegionServiceImpl implements RegionService{
     }
 
     @Override
-    public Region modifier(Long id_Region, Region region) {
-            return regionRepository.findById(id_Region)
+    public Region modifier(Long idRegion, Region region) {
+            return regionRepository.findById(idRegion)
                     .map(p->{
                         p.setCode_Region(region.getCode_Region());
-                        p.setNom_Regiojn(region.getNom_Regiojn());
+                        p.setNom_Region(region.getNom_Region());
                         p.setDomaineActiviteRegion(region.getDomaineActiviteRegion());
                         p.setSuperficie(region.getSuperficie());
                         p.setLangueMajoritaire(region.getLangueMajoritaire());
@@ -38,9 +42,14 @@ public class RegionServiceImpl implements RegionService{
         }
 
     @Override
-    public String supprimer(long id_Region) {
-        regionRepository.deleteById(id_Region);
-        return "Region supprimé";
+    public void supprimer(long idRegion) {
+         regionRepository.deleteById(idRegion);
+    }
+
+    @Override
+    public Region GetIdRegion(Long idRegion) {
+        return regionRepository.findByIdRegion(idRegion).get();
+                //.orElseThrow(() -> mew UserNotFoundException("User by is "+ idRegion +" was not found"));
     }
 
     public Iterable<Object[]> getRegionsSP() {
